@@ -401,30 +401,23 @@
         <always_on>1</always_on>
         <update_rate>10</update_rate>
         <visualize>true</visualize>
-        <!---<plugin name="cgo3_camera_controller" filename="libgazebo_ros_camera.so">
-          <alwaysOn>true</alwaysOn>
-          <updateRate>20.0</updateRate>
-          <cameraName>cgo3_camera</cameraName>
-          <imageTopicName>image_raw</imageTopicName>
-          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-          <frameName>cgo3_camera_optical_frame</frameName>
-          <hackBaseline>0.0</hackBaseline>
-          <distortionK1>0.0</distortionK1>
-          <distortionK2>0.0</distortionK2>
-          <distortionK3>0.0</distortionK3>
-          <distortionT1>0.0</distortionT1>
-          <distortionT2>0.0</distortionT2>
-        </plugin>
-        <!-->
-        <plugin name="display_video_controller" filename="libgazebo_ros_video.so">
+        <plugin name="cgo3_camera_controller" filename="libgazebo_ros_camera.so">
+
             <ros>
-              <!-- Remap for image topic to be subscribed -->
-              <remapping>~/image_raw:=/camera1/image_raw</remapping>
+              <namespace>custom_ns</namespace>
+              <remapping>image_raw:=custom_img</remapping>
+              <remapping>camera_info:=custom_info</remapping>
             </ros>
-            <height>120</height>
-            <width>160</width>
-          </plugin>
-      
+        
+
+          
+          <camera_name>cgo3_camera</camera_name>
+          <frame_name>cgo3_camera_optical_frame</frame_name>
+          <hack_baseline>0.0</hack_baseline>
+        
+        </plugin>
+        
+       
     </link>
     <joint name='cgo3_camera_joint' type='revolute'>
       <child>cgo3_camera_link</child>
